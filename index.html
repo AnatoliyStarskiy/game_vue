@@ -15,7 +15,7 @@
 <body>
 
     <div class="main">
-        <!-- <div class="app">
+        <div class="app" v-show="showMain">
             <div class="app__header">
                 <img src="/img/logo.png" alt="logo" class="app__logo">
             </div>
@@ -36,11 +36,11 @@
                     <i class="fa fa-volume-up" aria-hidden="true"></i>
                     <div class="app__btn-text">Звук</div>
                 </button>
-                
-            </div>
-        </div> -->
 
-        <!-- <div class="app achivments">
+            </div>
+        </div>
+
+        <div class="app achivments" v-show="showAchivments">
             <div class="app__body">
                 <div class="app__body-inner">
                     <h2 class="app__body-title">
@@ -74,7 +74,7 @@
                             <div class="app__result-name">Зерг</div>
                             <div class="app__result-amount">5</div>
                         </div>
-                        
+
                     </div>
                     <div class="app__body-botton">
                         <button class="app__btn btn__back btn__achivment">
@@ -84,9 +84,9 @@
                 </div>
             </div>
 
-        </div> -->
+        </div>
 
-        <!-- <div class="app">
+        <div class="app" v-show="showQuestions">
             <div class="app__header">
                 <div class="app__header-inner">
                     <div class="app__count"> # 1 </div>
@@ -98,8 +98,8 @@
                     <div class="app__btn-text">Ответ 1</div>
                 </button>
             </div>
-        </div> -->
-        <!--  <div class="app">
+        </div>
+        <div class="app" v-show="showSocial">
             <div class="app__body">
                 <a class="app__btn" target="_blank" href="#">
                     <i class="fa fa-instagram" aria-hidden="true"></i>
@@ -125,9 +125,9 @@
                     <i class="fa fa-reply" aria-hidden="true"></i>
                 </button>
             </div>
-        </div> -->
+        </div>
 
-        <div class="app results" data-race="zerg">
+        <div class="app results" data-race="zerg" v-show="showResults">
             <div class="app__body">
                 <div class="app__results-inner">
                     <div class="results__title">Зерг</div>
@@ -156,6 +156,42 @@
 
     <script src="js/vue.js"></script>
     <script src="js/const.js"></script>
+    <script>
+        let app = new Vue({
+            el: '.main',
+            data: {
+                showMain: true,
+                showSocial: false,
+                showAchivments: false,
+                showQuestions: false,
+                showResults: false,
+                number: 0,
+                score: {
+                    'zerg': 0,
+                    'primal': 0,
+                    'protos': 0,
+                    'taldarim': 0,
+                    'terran': 0
+                },
+                totalGame: localStorage.getItem('sc2TotalGame') ? JSON.parse(localStorage.getItem
+                    ('sc2TotalGame')) : {
+                    'zerg': 0,
+                    'primal': 0,
+                    'protos': 0,
+                    'taldarim': 0,
+                    'terran': 0,
+                    'infested': 0,
+                    'hybrid': 0,
+                },
+                totalGames: localStorage.getItem('sc2TotalGames') ? localStorage.getItem
+                    ('sc2TotalGames') : 0,
+                questions: questions,
+                results: results,
+                resultRace: 'infested',
+            },
+            
+        }) 
+    </script>
 </body>
 
 </html>
